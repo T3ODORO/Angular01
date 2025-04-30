@@ -8,23 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class CriarPensamentoComponent implements OnInit {
 
   pensamento = {
-    id: '1',
-    conteudo: 'Aprendendo angular',
-    autoria: 'dev',
+    conteudo: '',
+    autoria: '',
     modelo: ''
   }
 
-  constructor() { }
+  constructor(
+    private service: PensamentoService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   criarPensamento() {
-
+    this.service.criar(this.pensamento).subscrive(() => {
+    })
   }
 
   cancelarPensamento() {
-    
+    this.router.navigator(['/listarPensamento'])   
   }
 
 }
